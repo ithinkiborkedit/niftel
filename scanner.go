@@ -85,9 +85,9 @@ func (s *Scanner) string() Token {
 
 func (s *Scanner) ScanToken() Token {
 	// fmt.Printf("ScanToken start %d: current %d: char %q\n", s.start, s.current, s.peek())
-	if s.isAtEnd() {
-		return Token{Type: TokenEOF}
-	}
+	// if s.isAtEnd() {
+	// 	return Token{Type: TokenEOF}
+	// }
 
 	s.start = s.current
 	c := s.advance()

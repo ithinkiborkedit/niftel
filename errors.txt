@@ -6,6 +6,7 @@
 [identifier] start=4 current=7
 [identifier] start=4 current=8
 [identifier] start=4 current=9
+Unhandled char: '\x00'
 [0] TYPE KEYWORD
 Lexem: "var",  Literal<nil>
 [1] TYPE IDENT
@@ -14,9 +15,7 @@ Lexem: "hello",  Literal<nil>
 Lexem: "=",  Literal<nil>
 [3] TYPE STRING
 Lexem: "\"foo\"",  Literalfoo
-[4] TYPE EOF
+[4] TYPE ERROR
 Lexem: "",  Literal<nil>
 [5] TYPE EOF
 Lexem: "",  Literal<nil>
-Parsed 1 statements:
-main.VarStmt{Name:main.Token{Type:"IDENT", Lexeme:"hello", Literal:interface {}(nil), Line:1}, Value:main.LiteralExpr{Value:"foo"}}
