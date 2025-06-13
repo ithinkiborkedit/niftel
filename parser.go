@@ -74,6 +74,14 @@ func (LiteralExpr) isExpr() {}
 
 func (CommandStmt) isStmt() {}
 
+func (c CommandStmt) String() string {
+	argStrs := make([]string, len(c.Args))
+	for i, arg := range c.Args {
+		argStrs[i] = fmt.Sprintf("%v", arg)
+	}
+	return fmt.Sprintf("%s %s", c.Name.Lexeme, strings.Join(argStrs, " "))
+}
+
 func (ForStmt) isStmt() {}
 
 func (IfStatment) isStmt() {}

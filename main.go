@@ -267,14 +267,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	lexer := NewScanner(string(data))
+	source := string(data)
+
+	lexer := NewScanner(string(source))
 	tokens := lexer.ScanTokens()
-
-	for _, token := range tokens {
-
-		fmt.Printf("%+v", token)
-
-	}
 
 	parser := NewParser(tokens)
 	statements, err := parser.Parse()
@@ -284,7 +280,7 @@ func main() {
 	}
 
 	for _, stmt := range statements {
-		fmt.Printf("%#v\n", stmt)
+		fmt.Println(stmt)
 	}
 
 }
