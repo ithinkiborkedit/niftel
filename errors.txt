@@ -1,10 +1,22 @@
-Unhandled char: 'v'
 [identifier] start=0 current=1
 [identifier] start=0 current=2
 [identifier] start=0 current=3
-Unhandled char: 'h'
 [identifier] start=4 current=5
 [identifier] start=4 current=6
 [identifier] start=4 current=7
 [identifier] start=4 current=8
 [identifier] start=4 current=9
+[0] TYPE KEYWORD
+Lexem: "var",  Literal<nil>
+[1] TYPE IDENT
+Lexem: "hello",  Literal<nil>
+[2] TYPE EQUAL
+Lexem: "=",  Literal<nil>
+[3] TYPE STRING
+Lexem: "\"foo\"",  Literalfoo
+[4] TYPE EOF
+Lexem: "",  Literal<nil>
+[5] TYPE EOF
+Lexem: "",  Literal<nil>
+Parsed 1 statements:
+main.VarStmt{Name:main.Token{Type:"IDENT", Lexeme:"hello", Literal:interface {}(nil), Line:1}, Value:main.LiteralExpr{Value:"foo"}}

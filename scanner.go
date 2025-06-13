@@ -89,7 +89,17 @@ func (s *Scanner) ScanToken() Token {
 		return Token{Type: TokenEOF}
 	}
 
+	s.start = s.current
 	c := s.advance()
+
+	if isAlpha(c) {
+		return s.identifier()
+	}
+
+	if isDigit(c) {
+		return s.number()
+	}
+
 	switch c {
 	case '(':
 		return s.makeToken(TokenLParen)
@@ -111,13 +121,7 @@ func (s *Scanner) ScanToken() Token {
 		return s.ScanToken()
 	default:
 		fmt.Printf("Unhandled char: %q\n", c)
-		if isDigit(c) {
-			return s.number()
-		} else if isAlpha(c) {
-			return s.identifier()
-		} else {
-			return s.makeToken(TokenType("ERROR"))
-		}
+		return s.makeToken(TokenType("ERROR"))
 	}
 }
 
