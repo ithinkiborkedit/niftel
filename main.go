@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
@@ -131,6 +132,7 @@ func (s *Scanner) string() Token {
 }
 
 func (s *Scanner) ScanToken() Token {
+	fmt.Println("ScanToken at %d: %q\n", s.current, s.peek())
 	if s.isAtEnd() {
 		return Token{Type: TokenEOF}
 	}
@@ -149,6 +151,7 @@ func (s *Scanner) ScanToken() Token {
 	case '"':
 		return s.string()
 	case ' ', '\r', '\t':
+		s.advance()
 		return s.ScanToken()
 	case '\n':
 		s.line++
@@ -157,6 +160,7 @@ func (s *Scanner) ScanToken() Token {
 		if isDigit(c) {
 			return s.number()
 		} else if isAlpha(c) {
+			s.advance()
 			return s.identifier()
 		} else {
 			return s.makeToken(TokenType("ERROR"))
@@ -266,6 +270,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Failed to read file %s: %v\n", filename, err)
 		os.Exit(1)
 	}
+	log.Print("Reading source code...")
 
 	source := string(data)
 
@@ -274,13 +279,14 @@ func main() {
 
 	parser := NewParser(tokens)
 	statements, err := parser.Parse()
+
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Parsing error: %v\n", err)
 		os.Exit(1)
 	}
-
+	fmt.Printf("Parsed %d statements:\n", len(statements))
 	for _, stmt := range statements {
-		fmt.Println(stmt)
+		fmt.Printf("TYPE %T\nDATA: %#v\n", stmt, stmt)
 	}
 
 }
