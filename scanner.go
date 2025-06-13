@@ -33,8 +33,10 @@ func NewScanner(source string) *Scanner {
 func (s *Scanner) ScanTokens() []Token {
 	var tokens []Token
 	for !s.isAtEnd() {
+		s.skipWhiteSpace()
 		s.start = s.current
-		tokens = append(tokens, s.ScanToken())
+		tok := s.ScanToken()
+		tokens = append(tokens, tok)
 	}
 	tokens = append(tokens, Token{
 		Type:   TokenEOF,
@@ -77,15 +79,21 @@ func (s *Scanner) string() Token {
 		Literal: value,
 		Line:    s.line,
 	}
-	fmt.Printf("[string] returning: %#v\n", tkn)
+	// fmt.Printf("[string] returning: %#v\n", tkn)
 	return tkn
 }
 
 func (s *Scanner) ScanToken() Token {
-	fmt.Printf("ScanToken start %d: current %d: char %q\n", s.start, s.current, s.peek())
+	// fmt.Printf("ScanToken start %d: current %d: char %q\n", s.start, s.current, s.peek())
 	if s.isAtEnd() {
 		return Token{Type: TokenEOF}
 	}
+	// for s.peek() == ' ' || s.peek() == '\r' || s.peek() == '\t' || s.peek() == '\n' {
+	// 	if s.peek() == '\n' {
+	// 		s.line++
+	// 	}
+	// 	s.advance()
+	// }
 	c := s.advance()
 	switch c {
 	case '(':
@@ -100,10 +108,11 @@ func (s *Scanner) ScanToken() Token {
 		return s.makeToken(TokenEqal)
 	case '"':
 		return s.string()
-	case ' ', '\r', '\t':
+	case ' ':
 		return s.ScanToken()
 	case '\n':
 		s.line++
+		s.advance()
 		return s.ScanToken()
 	default:
 		fmt.Printf("Unhandled char: %q\n", c)
@@ -138,6 +147,24 @@ func (s *Scanner) number() Token {
 	}
 }
 
+func (s *Scanner) skipWhiteSpace() {
+	for {
+		if s.isAtEnd() {
+			return
+		}
+
+		switch s.peek() {
+		case ' ', '\r', '\t':
+			s.advance()
+		case '\n':
+			s.line++
+			s.advance()
+		default:
+			return
+		}
+	}
+}
+
 func (s *Scanner) identifier() Token {
 	fmt.Printf("[identifier] start=%d current=%d\n", s.start, s.current)
 	for isAlphaNumeric(s.peek()) {
@@ -166,7 +193,7 @@ func isDigit(c byte) bool {
 }
 
 func isAlpha(c byte) bool {
-	return (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z')
+	return (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c == '_')
 }
 
 func isAlphaNumeric(c byte) bool {
