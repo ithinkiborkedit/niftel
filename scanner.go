@@ -85,46 +85,49 @@ func (s *Scanner) string() Token {
 
 func (s *Scanner) ScanToken() Token {
 	// fmt.Printf("ScanToken start %d: current %d: char %q\n", s.start, s.current, s.peek())
-	// if s.isAtEnd() {
-	// 	return Token{Type: TokenEOF}
-	// }
-
-	s.start = s.current
-	c := s.advance()
-
-	if isAlpha(c) {
-		return s.identifier()
-	}
-
-	if isDigit(c) {
-		return s.number()
-	}
-
-	switch c {
-	case '(':
-		return s.makeToken(TokenLParen)
-	case ')':
-		return s.makeToken(TokenRParen)
-	case '+':
-		return s.makeToken(TokenPlus)
-	case '-':
-		return s.makeToken(TokenMinus)
-	case '=':
-		return s.makeToken(TokenEqal)
-	case '"':
-		return s.string()
-	// case ' ':
-	// 	return s.ScanToken()
-	// case '\n':
-	// 	s.line++
-	// 	s.advance()
-	// 	return s.ScanToken()
-	default:
-		if c == '\x00' {
-			return Token{Type: TokenEOF, Line: s.line}
+	for {
+		if s.isAtEnd() {
+			return Token{Type: TokenEOF}
 		}
-		fmt.Printf("Unhandled char: %q\n", c)
-		return s.makeToken(TokenType("ERROR"))
+		s.start = s.current
+		c := s.advance()
+
+		if isAlpha(c) {
+			return s.identifier()
+		}
+
+		if isDigit(c) {
+			return s.number()
+		}
+
+		switch c {
+		case '(':
+			return s.makeToken(TokenLParen)
+		case ')':
+			return s.makeToken(TokenRParen)
+		case '+':
+			return s.makeToken(TokenPlus)
+		case '-':
+			return s.makeToken(TokenMinus)
+		case '=':
+			return s.makeToken(TokenEqal)
+		case '"':
+			return s.string()
+		case '\x00':
+			continue
+		// case ' ':
+		// 	return s.ScanToken()
+		// case '\n':
+		// 	s.line++
+		// 	s.advance()
+		// 	return s.ScanToken()
+		default:
+			// if c == '\x00' {
+			// 	return Token{Type: TokenEOF, Line: s.line}
+			// }
+			fmt.Printf("Unhandled char: %q\n", c)
+			return s.makeToken(TokenType("ERROR"))
+		}
 	}
 }
 
