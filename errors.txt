@@ -25,4 +25,3 @@ Lexem: " = \"foo",  Literal<nil>
 Lexem: "Unterminated string",  Literal<nil>
 [4] TYPE EOF
 Lexem: "",  Literal<nil>
-Parsing error: Expected '-' after varaible name at line 1

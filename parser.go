@@ -146,7 +146,7 @@ func (p *Parser) parseVarStmt() (Stmt, error) {
 		return nil, err
 	}
 
-	if _, err := p.consume(TokenEqal, "Expected '-' after varaible name"); err != nil {
+	if _, err := p.consume(TokenEqal, "Expected '=' after varaible name"); err != nil {
 		return nil, err
 	}
 

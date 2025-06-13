@@ -107,10 +107,10 @@ func (s *Scanner) ScanToken() Token {
 		s.line++
 		return s.ScanToken()
 	default:
+		fmt.Printf("Unhandled char: %q\n", c)
 		if isDigit(c) {
 			return s.number()
 		} else if isAlpha(c) {
-			s.advance()
 			return s.identifier()
 		} else {
 			return s.makeToken(TokenType("ERROR"))

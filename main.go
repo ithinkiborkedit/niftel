@@ -90,6 +90,7 @@ func main() {
 	}
 	fmt.Printf("Parsed %d statements:\n", len(statements))
 	for _, stmt := range statements {
+		log.Println("parsing file....")
 		fmt.Printf("TYPE %T\nDATA: %#v\n", stmt, stmt)
 	}
 
