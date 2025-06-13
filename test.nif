@@ -1,0 +1,3 @@
+var foo = "x"
+repo "https://github.com/ithinkiborkedit/GUSH.git"
+branch "main"

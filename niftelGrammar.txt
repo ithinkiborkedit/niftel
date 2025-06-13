@@ -1,0 +1,4 @@
+program -> reproDecl branchDcl statements* EOF;
+repoDecl -> "repo" STRING
+bracnhDecl -> "branch" string
+statement -> assignment | command | block
