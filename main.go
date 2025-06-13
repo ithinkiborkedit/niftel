@@ -87,6 +87,12 @@ func (s *Scanner) ScanTokens() []Token {
 		s.start = s.current
 		tokens = append(tokens, s.ScanToken())
 	}
+	tokens = append(tokens, Token{
+		Type:   TokenEOF,
+		Lexeme: "",
+		Line:   s.line,
+	})
+
 	return tokens
 }
 
@@ -125,6 +131,9 @@ func (s *Scanner) string() Token {
 }
 
 func (s *Scanner) ScanToken() Token {
+	if s.isAtEnd() {
+		return Token{Type: TokenEOF}
+	}
 	c := s.advance()
 	switch c {
 	case '(':
@@ -222,8 +231,13 @@ func parseNumber(text string) float64 {
 }
 
 func (s *Scanner) advance() byte {
+	if !s.isAtEnd() {
+		return 0
+	}
+	ch := s.source[s.current]
 	s.current++
-	return s.source[s.current-1]
+
+	return ch
 }
 
 func (s *Scanner) isAtEnd() bool {
@@ -255,6 +269,12 @@ func main() {
 
 	lexer := NewScanner(string(data))
 	tokens := lexer.ScanTokens()
+
+	for _, token := range tokens {
+
+		fmt.Printf("%+v", token)
+
+	}
 
 	parser := NewParser(tokens)
 	statements, err := parser.Parse()
