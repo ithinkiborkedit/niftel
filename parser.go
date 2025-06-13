@@ -118,6 +118,9 @@ func (p *Parser) advance() Token {
 }
 
 func (p *Parser) peek() Token {
+	if p.isAtEnd() {
+		return Token{Type: TokenEOF}
+	}
 	return p.tokens[p.current]
 }
 
@@ -126,7 +129,7 @@ func (p *Parser) previous() Token {
 }
 
 func (p *Parser) isAtEnd() bool {
-	return p.peek().Type == TokenEOF
+	return p.current >= len(p.tokens) || p.tokens[p.current].Type == TokenEOF
 }
 
 func (p *Parser) parseVarStmt() (Stmt, error) {
