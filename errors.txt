@@ -1,10 +1,27 @@
-ScanToken at 0: 'v'
+ScanToken start 0: current 0: char 'v'
 [identifier] start=0 current=2
 [identifier] start=0 current=3
-ScanToken at 3: ' '
-ScanToken at 5: ' '
-ScanToken at 7: ' '
-ScanToken at 9: 'f'
-[identifier] start=3 current=11
-[identifier] start=3 current=12
-ScanToken at 12: '"'
+ScanToken start 3: current 3: char ' '
+ScanToken start 3: current 5: char 'e'
+[identifier] start=3 current=7
+[identifier] start=3 current=8
+[identifier] start=3 current=9
+ScanToken start 9: current 9: char ' '
+ScanToken start 9: current 11: char ' '
+ScanToken start 9: current 13: char 'f'
+[identifier] start=9 current=15
+[identifier] start=9 current=16
+ScanToken start 16: current 16: char '"'
+
+
+[0] TYPE KEYWORD
+Lexem: "var",  Literal<nil>
+[1] TYPE IDENT
+Lexem: " hello",  Literal<nil>
+[2] TYPE IDENT
+Lexem: " = \"foo",  Literal<nil>
+[3] TYPE Error
+Lexem: "Unterminated string",  Literal<nil>
+[4] TYPE EOF
+Lexem: "",  Literal<nil>
+Parsing error: Expected '-' after varaible name at line 1

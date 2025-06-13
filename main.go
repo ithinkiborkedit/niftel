@@ -77,8 +77,8 @@ func main() {
 	lexer := NewScanner(string(source))
 	tokens := lexer.ScanTokens()
 
-	for _, t := range tokens {
-		fmt.Printf("%#v\n", t)
+	for i, t := range tokens {
+		fmt.Printf("[%d] TYPE %s\nLexem: %q,  Literal%v\n", i, t.Type, t.Lexeme, t.Literal)
 	}
 
 	parser := NewParser(tokens)
