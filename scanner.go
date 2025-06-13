@@ -71,16 +71,18 @@ func (s *Scanner) string() Token {
 
 	value := s.source[s.start+1 : s.current-1]
 
-	return Token{
+	tkn := Token{
 		Type:    TokenString,
 		Lexeme:  s.source[s.start:s.current],
 		Literal: value,
 		Line:    s.line,
 	}
+	fmt.Printf("[string] returning: %#v\n", tkn)
+	return tkn
 }
 
 func (s *Scanner) ScanToken() Token {
-	fmt.Printf("ScanToken at %d: %q\n", s.current, s.peek())
+	fmt.Printf("ScanToken start %d: current %d: char %q\n", s.start, s.current, s.peek())
 	if s.isAtEnd() {
 		return Token{Type: TokenEOF}
 	}

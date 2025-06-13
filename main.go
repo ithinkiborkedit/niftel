@@ -77,6 +77,10 @@ func main() {
 	lexer := NewScanner(string(source))
 	tokens := lexer.ScanTokens()
 
+	for _, t := range tokens {
+		fmt.Printf("%#v\n", t)
+	}
+
 	parser := NewParser(tokens)
 	statements, err := parser.Parse()
 
