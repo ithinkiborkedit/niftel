@@ -80,7 +80,7 @@ func (s *Scanner) string() Token {
 }
 
 func (s *Scanner) ScanToken() Token {
-	fmt.Println("ScanToken at %d: %q\n", s.current, s.peek())
+	fmt.Printf("ScanToken at %d: %q\n", s.current, s.peek())
 	if s.isAtEnd() {
 		return Token{Type: TokenEOF}
 	}
@@ -138,8 +138,10 @@ func (s *Scanner) number() Token {
 }
 
 func (s *Scanner) identifier() Token {
+	fmt.Printf("[identifier] start=%d current=%d\n", s.start, s.current)
 	for isAlphaNumeric(s.peek()) {
 		s.advance()
+		fmt.Printf("[identifier] start=%d current=%d\n", s.start, s.current)
 	}
 
 	text := s.source[s.start:s.current]
@@ -183,7 +185,7 @@ func parseNumber(text string) float64 {
 }
 
 func (s *Scanner) advance() byte {
-	if !s.isAtEnd() {
+	if s.isAtEnd() {
 		return 0
 	}
 	ch := s.source[s.current]

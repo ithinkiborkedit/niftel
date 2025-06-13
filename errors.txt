@@ -1,0 +1,10 @@
+ScanToken at 0: 'v'
+[identifier] start=0 current=2
+[identifier] start=0 current=3
+ScanToken at 3: ' '
+ScanToken at 5: ' '
+ScanToken at 7: ' '
+ScanToken at 9: 'f'
+[identifier] start=3 current=11
+[identifier] start=3 current=12
+ScanToken at 12: '"'
