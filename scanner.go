@@ -88,12 +88,7 @@ func (s *Scanner) ScanToken() Token {
 	if s.isAtEnd() {
 		return Token{Type: TokenEOF}
 	}
-	// for s.peek() == ' ' || s.peek() == '\r' || s.peek() == '\t' || s.peek() == '\n' {
-	// 	if s.peek() == '\n' {
-	// 		s.line++
-	// 	}
-	// 	s.advance()
-	// }
+
 	c := s.advance()
 	switch c {
 	case '(':
