@@ -113,12 +113,12 @@ func (s *Scanner) ScanToken() Token {
 		return s.makeToken(TokenEqal)
 	case '"':
 		return s.string()
-	case ' ':
-		return s.ScanToken()
-	case '\n':
-		s.line++
-		s.advance()
-		return s.ScanToken()
+	// case ' ':
+	// 	return s.ScanToken()
+	// case '\n':
+	// 	s.line++
+	// 	s.advance()
+	// 	return s.ScanToken()
 	default:
 		fmt.Printf("Unhandled char: %q\n", c)
 		return s.makeToken(TokenType("ERROR"))
@@ -222,7 +222,7 @@ func (s *Scanner) advance() byte {
 }
 
 func (s *Scanner) isAtEnd() bool {
-	return s.current >= len(s.source)
+	return s.current >= len(s.source) || s.source[s.current] == '\x00'
 }
 
 func (s *Scanner) makeToken(t TokenType) Token {
