@@ -101,7 +101,6 @@ func (s *Scanner) ScanToken() Token {
 	case '"':
 		return s.string()
 	case ' ', '\r', '\t':
-		s.advance()
 		return s.ScanToken()
 	case '\n':
 		s.line++
