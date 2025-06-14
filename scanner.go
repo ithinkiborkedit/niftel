@@ -78,6 +78,17 @@ func (s *Scanner) string() Token {
 	return tkn
 }
 
+func (s *Scanner) match(expected byte) bool {
+	if s.isAtEnd() {
+		return false
+	}
+	if s.source[s.current] != expected {
+		return false
+	}
+	s.current++
+	return true
+}
+
 func (s *Scanner) ScanToken() Token {
 	// fmt.Printf("ScanToken start %d: current %d: char %q\n", s.start, s.current, s.peek())
 
@@ -113,8 +124,14 @@ func (s *Scanner) ScanToken() Token {
 	case '=':
 		return s.makeToken(TokenEqal)
 	case '<':
+		if s.match('=') {
+			return s.makeToken(TokenLess)
+		}
 		return s.makeToken(TokenLess)
 	case '>':
+		if s.match('=') {
+			return s.makeToken(TokenGreater)
+		}
 		return s.makeToken(TokenGreater)
 	case '"':
 		return s.string()

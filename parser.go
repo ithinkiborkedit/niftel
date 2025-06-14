@@ -306,7 +306,7 @@ func (p *Parser) parseUnary() (Expr, error) {
 }
 
 func (p *Parser) parseBlock() ([]Stmt, error) {
-	if _, err := p.consume(TokenIf, "Expected '{' after if conditon"); err != nil {
+	if _, err := p.consume(TokenLBrace, "Expected '{' after if conditon"); err != nil {
 		return nil, err
 	}
 	var statements []Stmt
