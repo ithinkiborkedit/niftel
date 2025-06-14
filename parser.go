@@ -207,7 +207,7 @@ func (p *Parser) parseEquality() (Expr, error) {
 		return nil, err
 	}
 
-	for p.match(TokenEqality, TokenBang) {
+	for p.match(TokenEqality, TokenBangEqal) {
 		operator := p.previous()
 		right, err := p.parseComparison()
 		if err != nil {
