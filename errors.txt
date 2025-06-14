@@ -5,9 +5,7 @@
 [identifier] start=6 current=7
 [identifier] start=6 current=8
 [identifier] start=9 current=10
-Unhandled char: '{'
 [identifier] start=16 current=17
-Unhandled char: '}'
 [0] TYPE KEYWORD
 Lexem: "for",  Literal<nil>
 [1] TYPE IDENT
@@ -16,11 +14,11 @@ Lexem: "x",  Literal<nil>
 Lexem: "in",  Literal<nil>
 [3] TYPE IDENT
 Lexem: "y",  Literal<nil>
-[4] TYPE ERROR
+[4] TYPE LBRACE
 Lexem: "{",  Literal<nil>
 [5] TYPE IDENT
 Lexem: "x",  Literal<nil>
-[6] TYPE ERROR
+[6] TYPE RBRACE
 Lexem: "}",  Literal<nil>
 [7] TYPE EOF
 Lexem: "",  Literal<nil>
