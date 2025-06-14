@@ -1,1 +1,3 @@
-var hello = "foo"
+for x in y{
+    x
+}

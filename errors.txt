@@ -2,20 +2,26 @@
 [identifier] start=0 current=2
 [identifier] start=0 current=3
 [identifier] start=4 current=5
-[identifier] start=4 current=6
-[identifier] start=4 current=7
-[identifier] start=4 current=8
-[identifier] start=4 current=9
+[identifier] start=6 current=7
+[identifier] start=6 current=8
+[identifier] start=9 current=10
+Unhandled char: '{'
+[identifier] start=16 current=17
+Unhandled char: '}'
 [0] TYPE KEYWORD
-Lexem: "var",  Literal<nil>
+Lexem: "for",  Literal<nil>
 [1] TYPE IDENT
-Lexem: "hello",  Literal<nil>
-[2] TYPE EQUAL
-Lexem: "=",  Literal<nil>
-[3] TYPE STRING
-Lexem: "\"foo\"",  Literalfoo
-[4] TYPE EOF
+Lexem: "x",  Literal<nil>
+[2] TYPE KEYWORD
+Lexem: "in",  Literal<nil>
+[3] TYPE IDENT
+Lexem: "y",  Literal<nil>
+[4] TYPE ERROR
+Lexem: "{",  Literal<nil>
+[5] TYPE IDENT
+Lexem: "x",  Literal<nil>
+[6] TYPE ERROR
+Lexem: "}",  Literal<nil>
+[7] TYPE EOF
 Lexem: "",  Literal<nil>
-Parsed 1 statements:
-2025/06/14 15:23:24 parsing file....
-main.VarStmt{Name:main.Token{Type:"IDENT", Lexeme:"hello", Literal:interface {}(nil), Line:1}, Value:main.LiteralExpr{Value:"foo"}}
+Parsing error: Expected '=' after varaible name at line 1
