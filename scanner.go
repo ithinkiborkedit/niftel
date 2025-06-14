@@ -100,6 +100,10 @@ func (s *Scanner) ScanToken() Token {
 		return s.makeToken(TokenLParen)
 	case ')':
 		return s.makeToken(TokenRParen)
+	case '{':
+		return s.makeToken(TokenLBrace)
+	case '}':
+		return s.makeToken(TokenRBrace)
 	case '+':
 		return s.makeToken(TokenPlus)
 	case '-':
