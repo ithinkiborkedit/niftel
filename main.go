@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 type TokenType string
@@ -73,6 +74,8 @@ func main() {
 	log.Print("Reading source code...")
 
 	source := string(data)
+
+	source = strings.ReplaceAll(source, "\x00", "")
 
 	lexer := NewScanner(string(source))
 	tokens := lexer.ScanTokens()
