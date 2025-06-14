@@ -104,12 +104,18 @@ func (s *Scanner) ScanToken() Token {
 		return s.makeToken(TokenLBrace)
 	case '}':
 		return s.makeToken(TokenRBrace)
+	case '!':
+		return s.makeToken(TokenBang)
 	case '+':
 		return s.makeToken(TokenPlus)
 	case '-':
 		return s.makeToken(TokenMinus)
 	case '=':
 		return s.makeToken(TokenEqal)
+	case '<':
+		return s.makeToken(TokenLess)
+	case '>':
+		return s.makeToken(TokenGreater)
 	case '"':
 		return s.string()
 	default:

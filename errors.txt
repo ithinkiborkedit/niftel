@@ -1,25 +1,16 @@
 [identifier] start=0 current=1
 [identifier] start=0 current=2
-[identifier] start=0 current=3
-[identifier] start=4 current=5
-[identifier] start=6 current=7
-[identifier] start=6 current=8
-[identifier] start=9 current=10
-[identifier] start=16 current=17
-[0] TYPE KEYWORD
-Lexem: "for",  Literal<nil>
+[identifier] start=3 current=4
+[0] TYPE IF
+Lexem: "if",  Literal<nil>
 [1] TYPE IDENT
 Lexem: "x",  Literal<nil>
-[2] TYPE KEYWORD
-Lexem: "in",  Literal<nil>
-[3] TYPE IDENT
-Lexem: "y",  Literal<nil>
+[2] TYPE GREATER
+Lexem: ">",  Literal<nil>
+[3] TYPE NUMBER
+Lexem: "3",  Literal3
 [4] TYPE LBRACE
 Lexem: "{",  Literal<nil>
-[5] TYPE IDENT
-Lexem: "x",  Literal<nil>
-[6] TYPE RBRACE
+[5] TYPE RBRACE
 Lexem: "}",  Literal<nil>
-[7] TYPE EOF
-Lexem: "",  Literal<nil>
-Parsing error: Expected '=' after varaible name at line 1
+Parsing error: Expected '{' after if conditon at line 1
