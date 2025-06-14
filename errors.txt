@@ -16,8 +16,6 @@ Lexem: "=",  Literal<nil>
 Lexem: "\"foo\"",  Literalfoo
 [4] TYPE EOF
 Lexem: "",  Literal<nil>
-[5] TYPE EOF
-Lexem: "",  Literal<nil>
 Parsed 1 statements:
-2025/06/13 16:44:59 parsing file....
+2025/06/14 15:23:24 parsing file....
 main.VarStmt{Name:main.Token{Type:"IDENT", Lexeme:"hello", Literal:interface {}(nil), Line:1}, Value:main.LiteralExpr{Value:"foo"}}

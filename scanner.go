@@ -38,11 +38,6 @@ func (s *Scanner) ScanTokens() []Token {
 		tok := s.ScanToken()
 		tokens = append(tokens, tok)
 	}
-	tokens = append(tokens, Token{
-		Type:   TokenEOF,
-		Lexeme: "",
-		Line:   s.line,
-	})
 
 	return tokens
 }
@@ -87,8 +82,7 @@ func (s *Scanner) ScanToken() Token {
 	// fmt.Printf("ScanToken start %d: current %d: char %q\n", s.start, s.current, s.peek())
 
 	if s.isAtEnd() {
-		break
-		// return Token{Type: TokenEOF}
+		return Token{Type: TokenEOF}
 	}
 	s.start = s.current
 	c := s.advance()
@@ -114,18 +108,7 @@ func (s *Scanner) ScanToken() Token {
 		return s.makeToken(TokenEqal)
 	case '"':
 		return s.string()
-	// case '\x00':
-	// 	continue
-	// case ' ':
-	// 	return s.ScanToken()
-	// case '\n':
-	// 	s.line++
-	// 	s.advance()
-	// 	return s.ScanToken()
 	default:
-		// if c == '\x00' {
-		// 	return Token{Type: TokenEOF, Line: s.line}
-		// }
 		fmt.Printf("Unhandled char: %q\n", c)
 		return s.makeToken(TokenType("ERROR"))
 	}
